@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>PlaceholderLogic</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>if response.code == 1 {
+                if let records = response.data {
+                    
+                    //先处理数据源
+                    var tempArr = Array&lt;Array&lt;SettlementRecord&gt;&gt;()
+                    if (self?.table.footerRefresh?.isRefreshing)! {//上拉
+                        //结束刷新
+                        if records.count &lt; (self?.itemsPerRequest)! {
+                            self?.table.footerRefresh?.endRefreshWithNoMoreData()
+                        }else {
+                            self?.table.footerRefresh?.endRefresh()
+                        }
+                        //处理数据
+                        if let settlementRecords = self?.data["value"] as? [SettlementRecord] {
+                            tempArr.append(settlementRecords)
+                        }
+                    }else {//下拉
+                        //结束刷新
+                        self?.table.headerRefresh?.endRefreshing()
+                        if records.count &lt; (self?.itemsPerRequest)! {
+                            self?.table.footerRefresh?.endRefreshWithNoMoreData()
+                        }
+                    }
+                    
+                    //处理数据
+                    for record in records {
+                        self?.data.updateValue(records, forKey:"key" )
+                        tempArr.append([record])
+                    }
+                    
+                    //reloadTable
+                    self?.data.updateValue(tempArr, forKey: "value")
+                    self?.dataSource.data = self?.data
+                    
+                    //数据占位
+                    if tempArr.count == 0 {
+                        self?.holderView.addAttribute([HolderAttributeStringKey.imageTitle : "nodata",HolderAttributeStringKey.result:"暂无结算纪录"], forStyle: KSHolderView.HolderStyle.noData)
+                        self?.holderView.show(onSuperView: (self?.view)!, forStyle: .noData)
+                    }else {
+                        self?.holderView.removeFromSuperview()
+                    }
+                }else {//非正常情况
+                    self?.table.headerRefresh?.endRefreshing()
+                    self?.table.footerRefresh?.endRefresh()
+                }
+            }else {
+                if (self?.table.footerRefresh?.isRefreshing)! {//上拉失败
+                    //结束刷新
+                    self?.table.footerRefresh?.endRefresh()
+                    //回退索引
+                    self?.sIndex -= (self?.itemsPerRequest)!
+                }else {//下拉失败
+                    //结束刷新
+                    self?.table.headerRefresh?.endRefreshing()
+                }
+                
+                //若无数据则网络占位
+                if self?.data["value"]?.count == 0 {
+                    self?.holderView.show(onSuperView: (self?.view)!, forStyle: .noNet)
+                    self?.holderView.delegate = self
+                }
+            }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>ED1A6E13-0D0E-4066-B8EC-5F6BCBD20E32</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>RequestCompleiton-PlaceholderLogin</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>swiftLoadData</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func loadData() {
+        let fileManager = FileManager.default
+        let cacheDirectoryUrl = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first
+        let cacheUrl = cacheDirectoryUrl?.appendingPathComponent("MyCache")
+        var dishPath = cacheUrl?.path
+        #if os(OSX)
+            dishPath = cacheUrl?.absoluteString
+        #endif
+        let cache = URLCache(memoryCapacity: 20000, diskCapacity: 270000000, diskPath: dishPath)
+        
+        let defaultConfiguration = URLSessionConfiguration.default
+        
+        defaultConfiguration.urlCache = cache
+        defaultConfiguration.requestCachePolicy = .useProtocolCachePolicy
+        
+        let defaultSession = URLSession(configuration: defaultConfiguration)
+        
+        
+        let userUrl = "http://192.168.0.191:6969/SpringDemo/privateapi/allusers"
+        
+        if let url = URL(string: userUrl.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!) {
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.addValue("text/json;charset=utf-8", forHTTPHeaderField: "Content-Type")
+            defaultSession.dataTask(with: request, completionHandler: { (data, response, error) in
+                if let error = error{
+                    print("Error\(error)")
+                }else if let response = response,
+                    let data = data,
+                    let string = String(data: data, encoding: String.Encoding.utf8){
+                    print("Response:\(response)");
+                    print("DATA:\n\(string)\nEND DATA\n");
+                    let dataContainer = try! JSONSerialization.jsonObject(with:data, options: JSONSerialization.ReadingOptions.allowFragments) as! Dictionary&lt;String, Any&gt;
+                        let dataArr = dataContainer["users"]
+                        for  dic  in (dataArr as! Array&lt;Any&gt;){
+                            let user = User(fromDic: dic as! Dictionary&lt;String, AnyObject&gt;)
+                            self.data.append(user)
+                    }
+                }
+            }).resume()
+        }
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>7629E6B9-BBFC-48C9-A3AE-B61203CB7363</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>SwiftLoadData</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

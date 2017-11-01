@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#pragma mark *******************自定义键盘完成按钮*******************
+- (void)keyboardWillShow
+{
+    _doneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _doneBtn.backgroundColor = [UIColor redColor];
+    [_doneBtn setTitle:@"完成" forState:UIControlStateNormal];
+    _doneBtn.backgroundColor = [UIColor redColor];
+    UITextField *textfield=(UITextField *)[self.view findFirstResponder];
+    if (textfield.keyboardType != UIKeyboardTypeNumberPad){
+        return;
+    }
+    
+    _doneBtn.frame = CGRectMake(0, kScreenHeight - 53, 124*kScalWidth, 53);
+    //在按钮被禁用时，图像会被画的颜色深一些
+    _doneBtn.adjustsImageWhenHighlighted = NO;
+    //根据按钮不同状态设图片
+    [_doneBtn setImage:[UIImage imageNamed:@"btn_done_up@2x.png"] forState:UIControlStateNormal];
+    [_doneBtn setImage:[UIImage imageNamed:@"btn_done_down@2x.png"] forState:UIControlStateHighlighted];
+    [_doneBtn addTarget:self action:@selector(finishAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self performSelector:@selector(addDoneButton) withObject:nil afterDelay:0.0f];
+    
+}
+
+- (void) addDoneButton{
+    //获得键盘所在的window视图
+    UIWindow* tempWindow = [[[UIApplication sharedApplication] windows] objectAtIndex:2];
+    [tempWindow addSubview:_doneBtn];	// 注意这里直接加到window上
+}
+//键盘隐藏通知响应事件
+- (void)keyboardWillHide{
+    if (_doneBtn.superview){
+        //从视图中移除掉
+        [_doneBtn removeFromSuperview];
+    }
+}
+//点击完成按键
+-(void)finishAction{
+    //隐藏完成按钮
+    _doneBtn.hidden = YES;
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];//关闭键盘
+}
+
+#pragma mark *******************自定义键盘完成按钮 *******************</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>F6D820A2-235C-40AA-A898-2511414ED2E2</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>NumKeyDone</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>NumKeyBoardDone</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>createTab</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>Preprocessor</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>+ (void)createTable:(NSString*)tableName withAttributes:(NSDictionary*)dic {
+    NSInteger count = 0;
+    NSString *sqStr = [NSString stringWithFormat:@"create table if not exists %@ (id integer primary key autoincrement not null unique",tableName];
+    while (count&lt;dic.count) {
+        NSString *key = dic.allKeys[count];
+        NSString *value = dic[key];
+        if (count== dic.count-1) {
+            sqStr =[sqStr stringByAppendingString:[NSString stringWithFormat:@",%@ %@)",key,value]];
+        }else sqStr =[sqStr stringByAppendingString:[NSString stringWithFormat:@",%@ %@",key,value]];
+        count++;
+    }
+        [__db executeUpdate:sqStr];
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>460EB23D-4CB9-453E-82CB-D9E94972A3DB</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>CreateTable</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

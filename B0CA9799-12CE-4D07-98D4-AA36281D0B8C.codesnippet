@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Adaptive</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#define kScreenWidthRatio  (kScreenWidth / 320.0)
+#define kScreenHeightRatio (kScreenHeight / 568.0)
+#define AdaptedWidthValue(x)  (ceilf((x) * kScreenWidthRatio))
+#define AdaptedHeightValue(x) (ceilf((x) * kScreenHeightRatio))
+#define kUHSystemFontWithSize(R)     [UIFont fontWithName: kULSystemFont size: (AdaptedWidthValue(R))]
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B0CA9799-12CE-4D07-98D4-AA36281D0B8C</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Adaptive</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>ScroolCell</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (void)cellWithText:(NSString *)text subMessage:(NSString *)message remark:(NSString *)remark type:(NSInteger)type frameY:(CGFloat)y tag:(NSInteger)tag {
+    UIView *view = [[UIView alloc]init];
+    view.frame = CGRectMake(0, y, kScreenWidth, kCellHeight);
+    [self.scrollView addSubview:view];
+    view.backgroundColor = kWhiteColor;
+    self.maxY = view.maxY;
+    UILabel *label = [[UILabel alloc]init];
+    label.textColor = kBlackColor;
+    label.font = kFirstFont;
+    [view addSubview:label];
+    label.text = text;
+    [label sizeToFit];
+    [label mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(view).offset(13*kScalWidth);
+        make.centerY.equalTo(view);
+        make.width.equalTo(@(label.width));
+        make.height.equalTo(@(label.height));
+    }];
+    switch (type) {
+        case 0:{
+            UIButton *button = [UIButton buttonAddTarget:self action:@selector(selectCarType) withTitle:message imageNamed:nil];
+            [view addSubview:button];
+            button.frame = CGRectMake(0, 0, kScreenWidth-11*kScalWidth, kCellHeight);
+            button.titleLabel.font = kSecondFont;
+            [button setTitleColor:kGrayColor forState:UIControlStateNormal];
+            button.enabled = NO;
+            button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+            [self.editViews addObject:button];
+        }
+            break;
+        case 1:{
+            UITextField *textField = [[UITextField alloc]init];
+            textField.text = message;
+            textField.textAlignment = NSTextAlignmentRight;
+            [view addSubview:textField];
+            textField.font = kSecondFont;
+            textField.textColor = kGrayColor;
+            textField.enabled = NO;
+            [textField mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(view).offset(-11*kScalWidth);
+                make.top.equalTo(view);
+                make.bottom.equalTo(view);
+                make.left.equalTo(label.mas_left).offset(10*kScalWidth);
+            }];
+            [self.editViews addObject:textField];
+            if (remark) {
+                UILabel *remarkLabel = [[UILabel alloc]init];
+                remarkLabel.textColor = kGrayColor;
+                remarkLabel.font = kLastFont;
+                [view addSubview:remarkLabel];
+                remarkLabel.text = remark;
+                [remarkLabel sizeToFit];
+                [remarkLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(label.mas_right).offset(10*kScalWidth);
+                    make.centerY.equalTo(view);
+                    make.width.equalTo(@(remarkLabel.width));
+                    make.height.equalTo(@(remarkLabel.height));
+                }];
+            }
+        }
+            break;
+        case 2:{
+            UILabel *subLabel = [[UILabel alloc]init];
+            subLabel.textColor = kBlackColor;
+            subLabel.font = kSecondFont;
+            [view addSubview:subLabel];
+            subLabel.text = message;
+            subLabel.textColor = kGrayColor;
+            [subLabel sizeToFit];
+            [subLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(view).offset(-11*kScalWidth);
+                make.top.equalTo(view);
+                make.bottom.equalTo(view);
+                make.width.equalTo(@(subLabel.width));
+            }];
+        }
+            break;
+        case 3:{
+            UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_mai_pull-down"]];
+            [view addSubview:imageView];
+            [imageView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(view).offset(-11*kScalWidth);
+                make.centerY.equalTo(view);
+                make.height.equalTo(@(imageView.image.size.height));
+                make.width.equalTo(@(imageView.image.size.width));
+            }];
+            UILabel *subLabel = [[UILabel alloc]init];
+            subLabel.textColor = kBlackColor;
+            subLabel.font = kSecondFont;
+            [view addSubview:subLabel];
+            subLabel.textColor = kGrayColor;
+            subLabel.text = message;
+            [subLabel sizeToFit];
+            [subLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(imageView.mas_left).offset(-5*kScalWidth);
+                make.top.equalTo(view);
+                make.bottom.equalTo(view);
+                make.width.equalTo(@(subLabel.width));
+            }];
+            UIButton *button = [UIButton buttonAddTarget:self action:@selector(lookMaintenanceOrder:) withTitle:nil imageNamed:nil];
+            [view addSubview:button];
+            button.frame = view.bounds;
+            if ([text isEqualToString:@"保养记录"]) {
+                self.noteView = view;
+                self.noteImageView = imageView;
+            }
+        }
+            break;
+        default:
+            break;
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>AD1BFFDB-EC17-4D7B-873E-5CB19F16267A</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>ScrollCell</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

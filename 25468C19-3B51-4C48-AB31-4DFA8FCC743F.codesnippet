@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>noNetPlaceHolder</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (void)createNoNetView {
+    self.noNetView = [[UIView alloc]initWithFrame:CGRectMake(0, kNavHeight, kScreenWidth, kScreenHeight-kNavHeight)];
+    self.noNetView.backgroundColor = kBGColor;
+    [self.view addSubview:self.noNetView];
+    self.noNetView.hidden = YES;
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_merchant_nonetwork"]];
+    [self.noNetView addSubview:imageView];
+    [imageView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.noNetView);
+        make.top.equalTo(self.noNetView).offset(170*kScalHeight);
+        make.width.equalTo(@(imageView.image.size.width));
+        make.height.equalTo(@(imageView.image.size.height));
+    }];
+    UILabel *label = [[UILabel alloc]init];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = kFirstFont;
+    label.textColor = kBlackColor;
+    label.text = @"连接失败";
+    [label sizeToFit];
+    [self.noNetView addSubview:label];
+    [label mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(imageView.mas_bottom).offset(9);
+        make.left.equalTo(self.noNetView);
+        make.right.equalTo(self.noNetView);
+        make.height.equalTo(@(label.height));
+    }];
+    UIButton *button = [UIButton buttonAddTarget:self action:@selector(loadData) withTitle:@"重新加载" imageNamed:nil];
+    [self.noNetView addSubview:button];
+    button.titleLabel.font = [UIFont systemFontOfSize:18];
+    button.layer.borderWidth = 1;
+    button.layer.borderColor = [UIColor colorWithHexString:@"#3c85ee"].CGColor;
+    button.layer.cornerRadius = 2;
+    button.layer.masksToBounds = YES;
+    [button setTitleColor:[UIColor colorWithHexString:@"#3c85ee"] forState:UIControlStateNormal];
+    [button mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.noNetView);
+        make.top.equalTo(label.mas_bottom).offset(21);
+        make.height.equalTo(@(33));
+        make.width.equalTo(@(113));
+    }];
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>25468C19-3B51-4C48-AB31-4DFA8FCC743F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>NoNetView</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

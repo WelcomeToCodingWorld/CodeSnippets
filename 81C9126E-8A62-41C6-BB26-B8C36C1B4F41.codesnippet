@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Jump</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>/*   url 构成
+     app1://zhiyou.com/ng02?name=zhangsan&amp;pwd=123123
+     
+     scheme: app1/(http://)
+     host: zhiyou.com(域名www.baidu.com)
+     path: /ng02
+     query: name=zhangsan&amp;pwd=123123
+     */
+    
+    /*  自己应用可以让其他app 跳转时 业务逻辑处理
+     多个scheme时,处理自己的业务逻辑
+     判断 scheme1 -&gt; 聊天 -&gt; 弹出聊天页面
+     判断 scheme2 -&gt; 授权 -&gt; 弹出账号选择页面
+     判断 scheme3 -&gt; 分享 -&gt; 弹出分享页面
+     
+     */
+    
+    
+    /*  自己应用使用第三方SDK,回调处理
+     应用内使用了分享,支付,第三方登录等SDK,其他SDK处理完,回到当前应用,里边包含了返回的结果
+     判断 scheme1 -&gt; 聊天SDK -&gt; 回到聊天逻辑,提示等
+     判断 scheme2 -&gt; 授权SDK -&gt; 回到授权逻辑,提示等
+     判断 scheme3 -&gt; 分享SDK -&gt; 回到分享逻辑,提示等
+     判断 scheme4 -&gt; 支付SDK -&gt; 回到支付逻辑,提示支付成功/进入订单列表/订单详情
+
+     */</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>81C9126E-8A62-41C6-BB26-B8C36C1B4F41</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>JumpApp</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

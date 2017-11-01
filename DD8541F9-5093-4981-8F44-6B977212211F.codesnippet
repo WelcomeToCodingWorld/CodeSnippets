@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>JsonLoad</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (id)loadDataFromLocalJsonFile:(NSString*)fileName{
+    NSData *data = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:fileName withExtension:@"json"]];
+    NSError* error = nil;
+    return [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&amp;error];
+    KSLog(@"%@",error.localizedDescription);
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>DD8541F9-5093-4981-8F44-6B977212211F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>JsonLoader</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

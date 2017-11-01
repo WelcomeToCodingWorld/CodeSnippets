@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>BottomLine</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (UIView *)addSeparatorLineBelowView:(UIView *)view toParentView:(UIView*)parentView topMargin:(CGFloat)topMargin leftMargin:(CGFloat)leftMargin rightMargin:(CGFloat)rightMargin
+{
+    UIView *line = [UIView new];
+    line.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.6];
+    [parentView addSubview:line];
+    
+    line.sd_layout
+    .leftSpaceToView(parentView, leftMargin)
+    .rightSpaceToView(parentView, rightMargin)
+    .heightIs(1)
+    .topSpaceToView(view, topMargin);
+    
+    return line;
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>7A68473E-25DE-4065-9CA1-5E35911C4F68</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>BottomSeparatorLine</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

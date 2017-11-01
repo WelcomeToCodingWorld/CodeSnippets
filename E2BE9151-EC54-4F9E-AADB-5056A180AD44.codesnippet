@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Shadow</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>self.table = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
+    [self.view addSubview:_table];
+    self.table.delegate = self;
+    self.table.dataSource = self;
+    _table.layer.shadowRadius = 1;
+    _table.layer.shadowOpacity = 0.3;
+    _table.layer.shadowColor = [[UIColor blackColor] CGColor];
+    _table.layer.shadowOffset= CGSizeMake(-1, 0);
+    CGRect shadowFrame = _table.layer.bounds;
+    CGPathRef shadowPath = [UIBezierPath bezierPathWithRect:shadowFrame].CGPath;
+    _table.layer.shadowPath = shadowPath;
+    
+    _table.clipsToBounds = NO;</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>E2BE9151-EC54-4F9E-AADB-5056A180AD44</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>TableViewShadow</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

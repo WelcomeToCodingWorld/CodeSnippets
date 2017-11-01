@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>collectionDS</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#pragma mark *******************UIcollectionViewDataSource*******************
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return _dataArr.count;
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return [_dataArr[section] count];
+}
+#pragma mark *******************cell*******************
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    MaintenancePicCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellReuseIdentifier forIndexPath:indexPath];
+    [cell.picView sd_setImageWithURL:[NSURL URLWithString:_dataArr[indexPath.section][indexPath.row]]];
+    return cell;
+}
+#pragma mark *******************sectionHeader*******************
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionReusableView *view = nil;
+    if ([kind isEqualToString: UICollectionElementKindSectionHeader]) {
+        MaintenancePicHeader *picHeader = (MaintenancePicHeader *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:supplementreuseIdentifier forIndexPath:indexPath];
+        picHeader.titleLabel.text = _titleArr[indexPath.section];
+        view = picHeader;
+     }
+    return view;
+}
+#pragma mark *******************sectionInset*******************
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(1, 0.5, 20, 0.5);
+}
+#pragma mark *******************sizeForItem*******************
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake((kScreenWidth/3)-1, 120);
+}
+#pragma mark *******************sizeForSectionHeader*******************
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    return CGSizeMake(kScreenWidth,44);
+}
+#pragma mark *******************MinLineSpace*******************
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 1;
+}
+#pragma mark *******************MinInteritemSpace*******************
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 50*kScalWidth;
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>06082DD2-6F20-458A-89FF-8E3C55CEB134</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>CollectionViewDataSource</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>Color</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>Preprocessor</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>/*
+ 颜色
+ */
+#define kWhiteColor  [UIColor colorWithHexString:@"#ffffff"]//白色
+#define kGrayColor  [UIColor colorWithHexString:@"#878787"]//灰色字体颜色
+#define kBGColor [UIColor colorWithHexString:@"#ebebeb"]//背景色
+#define kBlackColor [UIColor colorWithHexString:@"#292929"]//黑色
+#define kBlueColor [UIColor colorWithHexString:@"#3c85ee"]//蓝色</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>599175FA-C15C-476C-83BB-D01B6BB51FED</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C-Plus-Plus</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>CustomColor</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>SectionToggle</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func action(secionIndex: Int, object: inout SettlementRecord) {
+        object.open = !object.open//控制SectionHeader图标,顿悟：实际上区的打开和Cell上的数据并无关系
+        //更新data：因为这里的sectionHeader的数据来自data,所以要更新
+        guard var titles =  data["key"] as? [SettlementRecord] else {
+            return
+        }
+        
+        if dataSource.sectionOpenStyle == .single {
+            if currentOpenSection == secionIndex {//操作的是同一区
+                currentOpenSection = object.open ? secionIndex : -1
+            }else {
+                if currentOpenSection &gt; -1 {
+                    if object.open {//如果要打开一个新区
+                        titles[currentOpenSection].open = false
+                    }
+                }
+                currentOpenSection = secionIndex
+            }
+        }
+        
+        titles[secionIndex].open = object.open
+        data.updateValue(titles, forKey: "key")
+        
+        //把sectionIndex传递给dataSource即可,也就是说现在不关心两边的数据(对象的open属性)是否统一
+        //因为dataSource控制区的打开只需要一个结构不变的状态数组
+        dataSource.open(object.open, section: secionIndex)
+        dataSource.data = data//同步两边的数据并reloadData:虽然不需要，这里还是同步了
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>22B3A20A-AE9A-4312-9C34-35B59EABD8F0</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>SectionToggle-Swift</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
